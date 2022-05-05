@@ -159,10 +159,10 @@ const submission = ({ inputDataSet, submittedDataSet, outputToFile }) => {
 
       dataset.numContributorsWorkedOnProjects += numContributors;
 
-      const contributorAreAvailableFrom = Math.max(...contributorNames.map(
-        contributorName => dataset.contributors[contributorName].availableFrom
+      const contributorsAreAvailableFrom = Math.max(...contributorNames.map(
+        name => dataset.contributors[name].availableFrom
       ));
-      const endedOn = contributorAreAvailableFrom + project.numDays;
+      const endedOn = contributorsAreAvailableFrom + project.numDays;
 
       for (let j = 0; j < numContributors; j++) {
         const name = contributorNames[j];
@@ -185,7 +185,7 @@ const submission = ({ inputDataSet, submittedDataSet, outputToFile }) => {
             dataset.numTimesContributorsGotMentored++;
           }
 
-          contributor.waitingDays += contributorAreAvailableFrom - contributor.availableFrom;
+          contributor.waitingDays += contributorsAreAvailableFrom - contributor.availableFrom;
           contributor.availableFrom = endedOn;
           continue;
         }
